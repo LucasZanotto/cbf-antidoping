@@ -1,0 +1,45 @@
+.results-header {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 12px; margin-bottom: 12px;
+}
+.results-title { margin: 0; }
+
+.results-filters {
+  display: grid;
+  grid-template-columns: 1.2fr 0.7fr 0.9fr 1fr auto;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+.input, .select { width: 100%; padding: 10px 12px; }
+
+.results-table { width: 100%; border: 1px solid #eee; border-radius: 8px; }
+.results-thead, .results-row {
+  display: grid;
+  grid-template-columns: 1.1fr 0.8fr 1fr 1fr 0.9fr 0.9fr 1fr;
+  gap: 8px;
+  padding: 10px;
+}
+.results-thead { background: #fafafa; font-weight: 600; border-bottom: 1px solid #eee; }
+.results-row { border-top: 1px solid #f3f3f3; align-items: center; }
+
+.cell.mono {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+}
+
+.cell.actions { display: flex; align-items: center; gap: 6px; }
+.btn-small {
+  display: inline-block; padding: 8px 10px; border: 1px solid #ddd;
+  border-radius: 8px; text-decoration: none;
+}
+
+/* chips de outcome */
+.outcome.negative { color: #155724; background: #d4edda; border-radius: 6px; padding: 2px 6px; display: inline-block; }
+.outcome.aaf { color: #721c24; background: #f8d7da; border-radius: 6px; padding: 2px 6px; display: inline-block; }
+.outcome.inconclusive { color: #856404; background: #fff3cd; border-radius: 6px; padding: 2px 6px; display: inline-block; }
+
+.results-empty { padding: 16px; text-align: center; color: #666; }
+
+.btn-load-more {
+  margin: 12px auto 0; display: block; padding: 10px 14px;
+  border: 1px solid #ddd; border-radius: 10px; background: #fff;
+}

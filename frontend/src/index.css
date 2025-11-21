@@ -1,0 +1,16 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  background-color: #f5f6fa;
+  color: #222;
+}
+a {
+  color: inherit;
+}
+button {
+  font-family: inherit;
+}

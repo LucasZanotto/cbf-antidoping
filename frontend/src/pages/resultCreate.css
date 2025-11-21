@@ -1,0 +1,103 @@
+/* src/pages/resultCreate.css */
+
+/* Cabeçalho */
+.rc-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+.rc-title {
+  margin: 0;
+}
+
+/* Formulário */
+.rc-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Linhas do formulário */
+.row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+}
+
+.row.two {
+  grid-template-columns: 1fr 1fr;
+}
+
+/* Inputs padrão (segue o visual das outras páginas) */
+.input,
+textarea.input,
+select.input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #ddd;
+  background: #fff;
+  border-radius: 8px;
+  font-size: 14px;
+  outline: none;
+  transition: border-color .15s ease;
+}
+
+.input:focus,
+textarea.input:focus,
+select.input:focus {
+  border-color: #b9c3ff;
+}
+
+/* Textarea monoespaçada para JSON */
+.mono {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", monospace;
+  white-space: pre;
+}
+
+/* Botões */
+.btn-primary {
+  display: inline-block;
+  border: 1px solid #3355ff;
+  background: #3d5afe;
+  color: #fff;
+  padding: 10px 14px;
+  border-radius: 10px;
+  cursor: pointer;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.btn-primary[disabled] {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+/* Ações do formulário (alinhado à direita) */
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 6px;
+}
+
+/* Labels consistentes */
+.rc-form label {
+  font-size: 13px;
+  color: #555;
+  font-weight: 600;
+}
+
+/* Ajuste para o AsyncSelect encaixar como input */
+.rc-form .async-select .control,
+.rc-form .async-select .value-container {
+  min-height: 42px;
+}
+
+/* Responsividade simples */
+@media (max-width: 880px) {
+  .row.two {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,59 @@
+.la-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+.la-title { margin: 0; }
+
+.la-filters {
+  display: grid;
+  grid-template-columns: 1.3fr 1.4fr 1fr auto auto;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+.input, .select { padding: 10px 12px; width: 100%; }
+.lab-select { min-width: 240px; }
+.btn-filter { padding: 10px 12px; }
+.btn-ghost {
+  padding: 10px 12px; background: transparent; border: 1px solid #ccc; border-radius: 8px; cursor: pointer;
+}
+
+.la-table { width: 100%; }
+.la-thead, .la-row {
+  display: grid;
+  grid-template-columns: 1.1fr 1.6fr 1.2fr 1.1fr .9fr;
+  gap: 8px;
+  padding: 10px 8px;
+  align-items: center;
+}
+.la-thead { font-weight: 700; border-bottom: 1px solid #ddd; }
+.la-row { border-bottom: 1px solid #eee; }
+.cell { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.cell.actions { text-align: right; }
+.mono {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+.status.awaiting_pickup { color: #555; }
+.status.in_transit { color: #b18000; }
+.status.received { color: #4c7dff; }
+.status.processing { color: #12a98d; }
+.status.done { color: #18a058; }
+
+.la-empty { padding: 12px; color: #777; }
+.btn-load-more { margin-top: 12px; padding: 10px 12px; }
+
+@media (max-width: 980px) {
+  .la-filters { grid-template-columns: 1fr; }
+  .la-thead, .la-row { grid-template-columns: 1fr 1fr 1fr 1fr auto; }
+}
+
+.btn-small {
+  display: inline-block;
+  padding: 8px 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  text-decoration: none;
+}

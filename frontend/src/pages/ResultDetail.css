@@ -1,0 +1,84 @@
+.rd-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+.rd-title { margin: 0; }
+
+.rd-grid {
+  display: grid;
+  grid-template-columns: 1.1fr .9fr;
+  gap: 12px;
+}
+
+.card {
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+}
+
+.row {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+.row.two {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.input, select, textarea {
+  width: 100%;
+  padding: 10px 12px;
+}
+
+.with-btn {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 8px;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.rd-details-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.json-preview, .json-editor {
+  margin: 0;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  max-height: 360px;
+  overflow: auto;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+  font-size: .9rem;
+  line-height: 1.35;
+}
+.json-editor { min-height: 240px; resize: vertical; }
+
+.rd-loading, .rd-empty { padding: 12px; }
+
+.mono {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+.btn-ghost {
+  padding: 10px 12px; background: transparent; border: 1px solid #ccc; border-radius: 8px; cursor: pointer;
+}
+
+@media (max-width: 980px) {
+  .rd-grid { grid-template-columns: 1fr; }
+  .row.two { grid-template-columns: 1fr; }
+}

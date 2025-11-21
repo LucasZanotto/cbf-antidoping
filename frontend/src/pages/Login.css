@@ -1,0 +1,124 @@
+/* src/pages/Login.css */
+
+:root {
+  --brand-dark: #003366;
+  --brand-darker: #001a33;
+  --brand-text: #cdd5f5;
+  --accent: #ffcc00;
+  --accent-text: #002244;
+  --danger: #ff9b9b;
+
+  --card-bg: rgba(255, 255, 255, 0.06);
+  --text: #ffffff;
+  --input-bg: #ffffff;
+  --input-text: #0f172a;
+  --shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+.login-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(
+    circle at top,
+    var(--brand-dark) 0,
+    var(--brand-darker) 40%,
+    #000 100%
+  );
+  color: var(--text);
+  padding: 16px;
+}
+
+.login-card {
+  width: 100%;
+  max-width: 360px;
+  background: var(--card-bg);
+  border-radius: 12px;
+  padding: 24px 28px;
+  backdrop-filter: blur(10px);
+  box-shadow: var(--shadow);
+}
+
+.login-title {
+  margin: 0 0 4px;
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+}
+
+.login-subtitle {
+  margin: 0 0 16px;
+  font-size: 0.92rem;
+  color: var(--brand-text);
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.login-label {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.85rem;
+}
+
+.login-input {
+  margin-top: 6px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  background: var(--input-bg);
+  color: var(--input-text);
+  font-size: 0.95rem;
+  transition: box-shadow 0.15s ease, transform 0.05s ease;
+}
+
+.login-input:focus {
+  box-shadow: 0 0 0 3px rgba(255, 204, 0, 0.35);
+}
+
+.login-error {
+  font-size: 0.85rem;
+  color: var(--danger);
+  background: rgba(255, 0, 0, 0.08);
+  border: 1px solid rgba(255, 0, 0, 0.25);
+  padding: 8px 10px;
+  border-radius: 8px;
+}
+
+.login-button {
+  margin-top: 6px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: none;
+  width: 100%;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  background: var(--accent);
+  color: var(--accent-text);
+  transition: transform 0.06s ease, filter 0.15s ease;
+}
+
+.login-button:hover {
+  filter: brightness(1.05);
+}
+
+.login-button:active {
+  transform: translateY(1px);
+}
+
+.login-button:disabled {
+  opacity: 0.7;
+  cursor: default;
+}

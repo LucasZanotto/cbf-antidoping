@@ -1,0 +1,114 @@
+/* src/pages/AthleteCreate.css */
+
+:root {
+  --panel: #ffffff;
+  --border: #e6e9f2;
+  --shadow: 0 1px 3px rgba(16, 24, 40, 0.06);
+  --brand: #003366;
+  --brand-2: #0055aa;
+  --muted: #6b7280;
+  --danger: #cc1f1a;
+  --danger-bg: #fee2e2;
+  --danger-border: #fecaca;
+}
+
+.athleteCreate-title {
+  margin: 0 0 12px;
+}
+
+.athleteCreate-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+
+.athleteCreate-form {
+  background: var(--panel);
+  padding: 16px;
+  border-radius: 10px;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  max-width: 900px;
+}
+
+.athleteCreate-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+@media (max-width: 720px) {
+  .athleteCreate-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.athleteCreate-label {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.9rem;
+  color: #1f2937;
+}
+
+.athleteCreate-input,
+.athleteCreate-select {
+  margin-top: 6px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: #fff;
+  font-size: 0.95rem;
+  transition: box-shadow 0.15s ease, border-color 0.15s ease;
+}
+
+.athleteCreate-input:focus,
+.athleteCreate-select:focus {
+  outline: none;
+  border-color: #c9d8ff;
+  box-shadow: 0 0 0 3px rgba(0, 85, 170, 0.15);
+}
+
+.athleteCreate-error {
+  color: var(--danger);
+  background: var(--danger-bg);
+  border: 1px solid var(--danger-border);
+  padding: 10px 12px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+}
+
+.athleteCreate-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+/* Botões genéricos para manter consistência com outras páginas */
+.btn-primary,
+.btn-secondary {
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  font-size: 0.92rem;
+  cursor: pointer;
+  transition: filter 0.15s ease, transform 0.06s ease;
+}
+
+.btn-primary {
+  background: var(--brand-2);
+  color: #fff;
+}
+.btn-primary:hover { filter: brightness(1.05); }
+.btn-primary:active { transform: translateY(1px); }
+
+.btn-secondary {
+  background: #eef2ff;
+  color: #1f2937;
+  border-color: #e0e7ff;
+}
+.btn-secondary:hover { filter: brightness(0.98); }
+.btn-secondary:active { transform: translateY(1px); }

@@ -1,0 +1,149 @@
+/* src/pages/TestResultsList.css */
+
+:root {
+  --panel: #ffffff;
+  --border: #e6e9f2;
+  --shadow: 0 1px 3px rgba(16, 24, 40, 0.06);
+  --brand: #003366;
+  --brand-2: #0055aa;
+  --muted: #6b7280;
+
+  /* chips outcome */
+  --out-negative: #22c55e;
+  --out-aaf: #ef4444;
+  --out-inconclusive: #f59e0b;
+
+  /* chips final */
+  --final-confirmed: #2563eb;
+  --final-under-appeal: #8b5cf6;
+  --final-retracted: #9ca3af;
+}
+
+.results-title {
+  margin: 0;
+}
+
+.results-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  gap: 12px;
+}
+
+.results-filters {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.input,
+.select {
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: #fff;
+  font-size: 0.92rem;
+  min-width: 220px;
+  flex: 1;
+}
+
+.btn-filter {
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: none;
+  background: var(--brand);
+  color: #fff;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.results-table {
+  background: var(--panel);
+  border-radius: 10px;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.results-thead,
+.results-row {
+  display: grid;
+  grid-template-columns: 1.6fr 1.2fr 1.1fr 1.1fr 1.6fr 0.8fr;
+  gap: 8px;
+  padding: 10px 16px;
+  font-size: 0.9rem;
+}
+
+.results-thead {
+  font-weight: 700;
+  color: #4b5563;
+  border-bottom: 1px solid var(--border);
+  background: #fcfcfd;
+}
+
+.results-row:nth-child(even) {
+  background: #fafafa;
+}
+
+.cell.mono {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+/* chips outcome */
+.cell.outcome {
+  font-weight: 700;
+  font-size: 0.8rem;
+  align-self: center;
+  justify-self: start;
+  padding: 4px 8px;
+  border-radius: 999px;
+  color: #fff;
+}
+.cell.outcome.negative { background: var(--out-negative); }
+.cell.outcome.aaf { background: var(--out-aaf); }
+.cell.outcome.inconclusive { background: var(--out-inconclusive); }
+
+/* chips final */
+.cell.final {
+  font-weight: 700;
+  font-size: 0.8rem;
+  align-self: center;
+  justify-self: start;
+  padding: 4px 8px;
+  border-radius: 999px;
+  color: #fff;
+}
+.cell.final.none {
+  background: #d1d5db;
+  color: #111827;
+}
+.cell.final.confirmed { background: var(--final-confirmed); }
+.cell.final.under_appeal { background: var(--final-under-appeal); }
+.cell.final.retracted { background: var(--final-retracted); }
+
+.results-empty {
+  padding: 14px 16px;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.btn-load-more {
+  margin-top: 12px;
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: none;
+  background: var(--brand-2);
+  color: #fff;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.link {
+  color: var(--brand-2);
+  text-decoration: none;
+  font-weight: 600;
+}
+.link:hover {
+  text-decoration: underline;
+}

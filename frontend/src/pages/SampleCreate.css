@@ -1,0 +1,92 @@
+.sc-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.sc-title {
+  margin: 0;
+}
+
+.sc-form .row {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.sc-form .row.two {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.input, select {
+  width: 100%;
+  padding: 10px 12px;
+}
+
+.with-btn {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 8px;
+}
+
+.btn-ghost {
+  border: 1px solid #ccc;
+  background: transparent;
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.btn-ghost.danger { border-color: #d29; color: #d29; }
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.custody {
+  border-top: 1px dashed #ccc;
+  padding-top: 10px;
+}
+.custody > summary {
+  cursor: pointer;
+  font-weight: 700;
+  margin: 4px 0 8px;
+}
+
+.transfer-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.transfer-row {
+  display: grid;
+  grid-template-columns: 220px 1fr 1fr 1fr auto;
+  gap: 8px;
+}
+
+.transfer-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.json-preview {
+  margin: 0;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: auto;
+  max-height: 280px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+  font-size: .9rem;
+}
+
+@media (max-width: 920px) {
+  .sc-form .row.two { grid-template-columns: 1fr; }
+  .transfer-row { grid-template-columns: 1fr; }
+}

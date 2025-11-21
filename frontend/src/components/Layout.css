@@ -1,0 +1,142 @@
+/* src/components/Layout.css */
+
+:root {
+  --brand: #003366;
+  --brand-2: #0055aa;
+  --bg: #f5f6fa;
+  --panel: #ffffff;
+  --border: #e6e9f2;
+  --text: #1f2937;
+  --text-contrast: #ffffff;
+  --muted: #6b7280;
+  --shadow: 0 1px 3px rgba(16, 24, 40, 0.06);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+.app-shell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, 'Helvetica Neue', Arial, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
+}
+
+.app-header {
+  height: 56px;
+  padding: 0 20px;
+  background: var(--brand);
+  color: var(--text-contrast);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.logo {
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex: 1;
+  justify-content: center;
+}
+
+.nav-link {
+  color: var(--text-contrast);
+  text-decoration: none;
+  font-size: 0.95rem;
+  padding: 6px 8px;
+  border-radius: 6px;
+  transition: background-color 0.15s ease, opacity 0.15s ease;
+}
+
+.nav-link:hover {
+  background: rgba(255,255,255,0.12);
+  opacity: 0.95;
+}
+
+.user-area {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.user-chip {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+  background: rgba(255,255,255,0.12);
+  color: #fff;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+}
+
+.user-name {
+  font-weight: 600;
+}
+
+.user-role {
+  opacity: 0.9;
+  font-weight: 500;
+}
+
+.btn-logout {
+  padding: 6px 10px;
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.35);
+  background: transparent;
+  color: var(--text-contrast);
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.06s ease, border-color 0.15s ease;
+}
+
+.btn-logout:hover {
+  background: rgba(255,255,255,0.14);
+  border-color: rgba(255,255,255,0.5);
+}
+
+.btn-logout:active {
+  transform: translateY(1px);
+}
+
+.app-content {
+  padding: 20px;
+  flex: 1;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Responsividade */
+@media (max-width: 920px) {
+  .nav-links {
+    gap: 8px;
+  }
+  .app-content {
+    padding: 16px;
+  }
+}
+
+@media (max-width: 640px) {
+  .app-header {
+    padding: 0 12px;
+    gap: 10px;
+  }
+  .nav-links {
+    display: none; /* simples para telas muito estreitas; pode virar menu hamburguer depois */
+  }
+}

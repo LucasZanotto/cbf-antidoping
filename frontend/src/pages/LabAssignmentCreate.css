@@ -1,0 +1,28 @@
+.lac-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+.lac-title { margin: 0; }
+
+.lac-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.row { display: flex; flex-direction: column; gap: 6px; }
+.row.two { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+.input, select {
+  width: 100%;
+  padding: 10px 12px;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 8px;
+}

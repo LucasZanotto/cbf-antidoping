@@ -1,0 +1,238 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+//
+// Enums
+//
+
+enum UserRole {
+  ADMIN_CBF
+  FED_USER
+  CLUB_USER
+  LAB_USER
+  REGULATOR
+  AUDITOR
+}
+
+enum AthleteStatus {
+  ELIGIBLE
+  SUSPENDED
+  INACTIVE
+}
+
+enum TestReason {
+  IN_COMPETITION
+  OUT_OF_COMPETITION
+  TARGETED
+  RANDOM
+}
+
+enum TestPriority {
+  LOW
+  NORMAL
+  HIGH
+  URGENT
+}
+
+enum TestOrderStatus {
+  REQUESTED
+  ASSIGNED
+  COLLECTING
+  SHIPPED
+  RECEIVED
+  ANALYZING
+  COMPLETED
+  VOID
+}
+
+enum SampleType {
+  URINE
+  BLOOD
+}
+
+enum SampleStatus {
+  SEALED
+  SHIPPED
+  RECEIVED
+  ANALYZING
+  ARCHIVED
+}
+
+enum TestOutcome {
+  NEGATIVE
+  AAF
+  INCONCLUSIVE
+}
+
+enum FinalResultStatus {
+  CONFIRMED
+  UNDER_APPEAL
+  RETRACTED
+}
+
+enum LabAssignmentStatus {
+  AWAITING_PICKUP
+  IN_TRANSIT
+  RECEIVED
+  PROCESSING
+  DONE
+}
+
+//
+// Models
+//
+
+model User {
+  id           String   @id @default(uuid())
+  name         String
+  email        String   @unique
+  passwordHash String
+  role         UserRole
+  federationId String?
+  clubId       String?
+  labId        String?
+  isActive     Boolean  @default(true)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  testOrders TestOrder[]
+}
+
+model Federation {
+  id   String @id @default(uuid())
+  name String
+  uf   String @unique
+
+  clubs        Club[]
+  affiliations AthleteAffiliation[]
+
+  createdAt DateTime @default(now())
+}
+
+model Club {
+  id           String     @id @default(uuid())
+  name         String
+  federationId String
+  federation   Federation @relation(fields: [federationId], references: [id])
+
+  affiliations AthleteAffiliation[]
+
+  createdAt DateTime @default(now())
+}
+
+model Athlete {
+  id          String        @id @default(uuid())
+  cbfCode     String        @unique
+  fullName    String
+  birthDate   DateTime
+  nationality String
+  cpfHash     String        @unique
+  sex         String
+  status      AthleteStatus @default(ELIGIBLE)
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+
+  affiliations AthleteAffiliation[]
+}
+
+model AthleteAffiliation {
+  id           String    @id @default(uuid())
+  athleteId    String
+  federationId String
+  clubId       String?
+  startDate    DateTime
+  endDate      DateTime?
+  status       String // "active", "ended", "suspended"
+
+  athlete    Athlete    @relation(fields: [athleteId], references: [id])
+  federation Federation @relation(fields: [federationId], references: [id])
+  club       Club?      @relation(fields: [clubId], references: [id])
+
+  @@index([athleteId])
+  @@index([federationId])
+  @@index([clubId])
+}
+
+model Lab {
+  id        String   @id @default(uuid())
+  name      String
+  code      String   @unique
+  country   String
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+
+  assignments LabAssignment[]
+  results     TestResult[]
+}
+
+model TestOrder {
+  id              String          @id @default(uuid())
+  createdAt       DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
+  createdByUserId String
+  athleteId String?
+  athlete   Athlete? @relation(fields: [athleteId], references: [id])
+  federationId    String
+  clubId          String?
+  athleteId       String?
+  matchId         String?
+  reason          TestReason
+  priority        TestPriority    @default(NORMAL)
+  status          TestOrderStatus @default(REQUESTED)
+
+  createdByUser User @relation(fields: [createdByUserId], references: [id])
+
+  samples        Sample[]
+  labAssignments LabAssignment[]
+}
+
+model Sample {
+  id                 String       @id @default(uuid())
+  testOrderId        String
+  code               String       @unique
+  type               SampleType
+  collectedAt        DateTime?
+  collectedByUserId  String?
+  chainOfCustodyJson Json?
+  status             SampleStatus @default(SEALED)
+
+  testOrder  TestOrder   @relation(fields: [testOrderId], references: [id])
+  testResult TestResult?
+}
+
+model LabAssignment {
+  id          String              @id @default(uuid())
+  testOrderId String
+  labId       String
+  assignedAt  DateTime            @default(now())
+  status      LabAssignmentStatus @default(AWAITING_PICKUP)
+
+  testOrder TestOrder @relation(fields: [testOrderId], references: [id])
+  lab       Lab       @relation(fields: [labId], references: [id])
+
+  @@index([labId])
+  @@index([testOrderId])
+}
+
+model TestResult {
+  id           String             @id @default(uuid())
+  sampleId     String             @unique
+  labId        String
+  reportedAt   DateTime
+  outcome      TestOutcome
+  detailsJson  Json?
+  finalStatus  FinalResultStatus?
+  pdfReportUrl String?
+
+  sample Sample @relation(fields: [sampleId], references: [id])
+  lab    Lab    @relation(fields: [labId], references: [id])
+
+  @@index([labId])
+  @@index([reportedAt])
+}
