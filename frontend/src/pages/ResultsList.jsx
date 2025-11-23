@@ -108,15 +108,6 @@ export default function ResultsList() {
         <button className="btn-filter" type="submit" disabled={loading}>
           {loading ? "Filtrando..." : "Filtrar"}
         </button>
-        <button
-          type="button"
-          className="btn-filter"
-          onClick={clearFilters}
-          disabled={loading}
-          style={{ marginLeft: 8 }}
-        >
-          Limpar
-        </button>
       </form>
 
       <div className="results-table">

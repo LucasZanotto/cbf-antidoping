@@ -114,9 +114,6 @@ export default function LabAssignmentsList() {
         <button className="btn-filter" type="submit" disabled={loading}>
           {loading ? 'Filtrando…' : 'Filtrar'}
         </button>
-        <button className="btn-ghost" type="button" onClick={clearFilters} disabled={loading}>
-          Limpar
-        </button>
       </form>
 
       <div className="la-table">
