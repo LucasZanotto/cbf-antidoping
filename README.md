@@ -22,7 +22,6 @@
 
 A aplicação está no ar e pode ser acessada em:
 
-### **Frontend:**  
 👉 **[https://cbf-antidoping-front.onrender.com](https://cbf-antidoping-front.onrender.com)**
 
 <small>_**Nota:** Tanto o frontend quanto o backend estão hospedados em plano gratuito na Render. O primeiro acesso após algum tempo inativo pode levar alguns segundos enquanto os serviços "acordam"._</small>
