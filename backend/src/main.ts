@@ -12,12 +12,7 @@ async function bootstrap() {
   app.setGlobalPrefix('api/v1');
 
   // CORS – adiciona depois a URL real do frontend na Render
-  app.enableCors({
-    origin: true,
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
-    allowedHeaders: '*',
-    credentials: false, // ok para JWT via header
-  });
+  app.enableCors();
 
   // seed do admin
   const usersService = app.get(UsersService);
