@@ -251,4 +251,3 @@ Este projeto foi desenvolvido por:
 <div align="center">
   <strong>Obrigado por conferir o projeto CBF Antidoping! ⚽🧪</strong>
 </div>
-```
