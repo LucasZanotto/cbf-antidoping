@@ -139,7 +139,11 @@ model Athlete {
   updatedAt   DateTime      @updatedAt
 
   affiliations AthleteAffiliation[]
+
+  // 👇 lado oposto da relação com TestOrder
+  testOrders   TestOrder[]
 }
+
 
 model AthleteAffiliation {
   id           String    @id @default(uuid())
@@ -176,21 +180,23 @@ model TestOrder {
   createdAt       DateTime        @default(now())
   updatedAt       DateTime        @updatedAt
   createdByUserId String
-  athleteId String?
-  athlete   Athlete? @relation(fields: [athleteId], references: [id])
-  federationId    String
-  clubId          String?
-  athleteId       String?
-  matchId         String?
-  reason          TestReason
-  priority        TestPriority    @default(NORMAL)
-  status          TestOrderStatus @default(REQUESTED)
 
-  createdByUser User @relation(fields: [createdByUserId], references: [id])
+  federationId String
+  clubId       String?
+  athleteId    String?
+  matchId      String?
+
+  reason   TestReason
+  priority TestPriority    @default(NORMAL)
+  status   TestOrderStatus @default(REQUESTED)
+
+  createdByUser User     @relation(fields: [createdByUserId], references: [id])
+  athlete       Athlete? @relation(fields: [athleteId], references: [id])
 
   samples        Sample[]
   labAssignments LabAssignment[]
 }
+
 
 model Sample {
   id                 String       @id @default(uuid())
