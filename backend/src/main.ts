@@ -17,6 +17,7 @@ async function bootstrap() {
       'http://localhost:5173',
       'http://127.0.0.1:5173',
       'https://cbf-antidoping-front.onrender.com',
+      'https://cbf-antidoping-api.onrender.com/api/v1',
       // coloque aqui depois a URL do seu frontend na Render, ex:
       // 'https://cbf-antidoping-web.onrender.com',
     ],
