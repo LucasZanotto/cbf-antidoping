@@ -33,38 +33,68 @@ export default function TestOrderCreate() {
     setForm((prev) => ({ ...prev, [name]: value }));
   }
 
+  // helper pra extrair ID (funciona se for string ou objeto { value, label })
+  const getId = (val) => {
+    if (!val) return undefined;
+    if (typeof val === 'string') return val || undefined;
+    if (typeof val === 'object' && val.value) return val.value || undefined;
+    return undefined;
+  };
+
   async function handleSubmit(e) {
     e.preventDefault();
     setError('');
 
     // validações
     const errs = collectErrors({
-      federationId: [{ test: () => required(form.federationId), message: 'Selecione uma federação.' }],
-      reason:       [{ test: () => required(form.reason),       message: 'Motivo é obrigatório.' }],
-      priority:     [{ test: () => required(form.priority),     message: 'Prioridade é obrigatória.' }],
+      federationId: [
+        { test: () => required(form.federationId), message: 'Selecione uma federação.' },
+      ],
+      reason: [
+        { test: () => required(form.reason), message: 'Motivo é obrigatório.' },
+      ],
+      priority: [
+        { test: () => required(form.priority), message: 'Prioridade é obrigatória.' },
+      ],
     });
     if (hasErrors(errs)) {
       setError(Object.values(errs)[0]);
       return;
     }
 
+    const payload = {
+      federationId: getId(form.federationId),   // obrigatório
+      clubId: getId(form.clubId),               // opcional
+      athleteId: getId(form.athleteId),         // opcional
+      matchId: form.matchId?.trim() || undefined,
+      reason: form.reason,
+      priority: form.priority,
+    };
+
+    console.log('payload enviado para /test-orders:', payload);
+
     setSaving(true);
     try {
-      const payload = {
-  federationId: form.federationId,
-  clubId: form.clubId || undefined,
-  athleteId: form.athleteId || undefined,
-  matchId: form.matchId?.trim() || undefined, // <- some se vazio
-  reason: form.reason,
-  priority: form.priority,
-};
-
       await api.post('/test-orders', payload);
       toast.success('Ordem criada.');
       navigate('/test-orders');
     } catch (err) {
-      console.error(err);
-      const msg = err.userMessage || 'Erro ao criar ordem.';
+      console.error('Erro ao criar ordem:', err);
+
+      // tenta extrair mensagem do NestJS
+      const resp = err.response?.data;
+      let msg = 'Erro ao criar ordem.';
+
+      if (resp?.message) {
+        if (Array.isArray(resp.message)) {
+          msg = resp.message[0];
+        } else {
+          msg = resp.message;
+        }
+      } else if (err.userMessage) {
+        msg = err.userMessage;
+      }
+
       toast.error(msg);
       setError(msg);
     } finally {
@@ -83,11 +113,13 @@ export default function TestOrderCreate() {
           <label className="orderCreate-label">
             Federação *
             <AsyncSelect
-  value={form.federationId}
-  onChange={(val) => setForm((p) => ({ ...p, federationId: val, clubId: '' }))}
-  fetchOptions={searchFederations}
-  placeholder="Pesquisar federação..."
-/>
+              value={form.federationId}
+              onChange={(val) =>
+                setForm((p) => ({ ...p, federationId: val, clubId: '' }))
+              }
+              fetchOptions={searchFederations}
+              placeholder="Pesquisar federação..."
+            />
           </label>
 
           <label className="orderCreate-label">
@@ -95,7 +127,7 @@ export default function TestOrderCreate() {
             <AsyncSelect
               value={form.clubId}
               onChange={(val) => setForm((p) => ({ ...p, clubId: val }))}
-              fetchOptions={(q) => searchClubs(q, form.federationId)}
+              fetchOptions={(q) => searchClubs(q, getId(form.federationId))}
               placeholder="Pesquisar clube..."
             />
           </label>
