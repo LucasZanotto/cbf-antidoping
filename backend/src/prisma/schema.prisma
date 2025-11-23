@@ -178,7 +178,7 @@ model Lab {
 model TestOrder {
   id              String          @id @default(uuid())
   createdAt       DateTime        @default(now())
-  updatedAt       DateTime        @updatedAt
+  updatedAt       DateTime        @updatedAt @default(now())
   createdByUserId String
 
   federationId String

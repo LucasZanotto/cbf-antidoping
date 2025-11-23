@@ -1,0 +1,5 @@
+-- AlterTable
+ALTER TABLE "TestOrder" ADD COLUMN     "updatedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP;
+
+-- AddForeignKey
+ALTER TABLE "TestOrder" ADD CONSTRAINT "TestOrder_athleteId_fkey" FOREIGN KEY ("athleteId") REFERENCES "Athlete"("id") ON DELETE SET NULL ON UPDATE CASCADE;
