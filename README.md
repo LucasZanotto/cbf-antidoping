@@ -1,8 +1,3 @@
-Perfeito, bora deixar esse repo bonitão também 😎
-Vou montar um README no mesmo estilo do PlotTale, mas focado no projeto CBF Antidoping.
-
-Você pode só **copiar e colar** no `README.md` da raíz do repo:
-
 <div align="center">
   <h1>CBF Antidoping</h1>
   <p><strong>Sistema de Gestão de Testes Antidoping da CBF (projeto acadêmico)</strong></p>
